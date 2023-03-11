@@ -15,9 +15,10 @@ import HomePage from "./pages/HomePage";
 function App() {
 const [items, setItems] = useState([]);
 const [category,setCategory]=useState([]);
+const [categorydata,setCategoryData]=useState([]);
 
 
-  console.log(items);
+  // console.log(items);
 
 
 useEffect(() => {
@@ -29,6 +30,7 @@ useEffect(() => {
      setItems(items?.result);
    }
   Fetchnews();
+
    
   async function Fetchcategory() {
     const data = await fetch(
@@ -43,11 +45,12 @@ useEffect(() => {
 
   Fetchcategory();
 }, []);
+   console.log(categorydata);
 
 function chooseCategory(item) {
-  const newItems = items.filter((i) => i?.[`${"Category "}`] === item);
-  setItems(newItems);
-  console.log(item);
+  const newItems = items?.filter((i) => i?.[`${"Category "}`] === item);
+  setCategoryData(newItems);
+   console.log("newItem",newItems);
 }
 
 
@@ -61,7 +64,7 @@ function chooseCategory(item) {
       <Content category={category} chooseCategory={chooseCategory}/> 
         <div style={{width:"100%"}}>
           <Routes>
-            <Route path="/" element={<HomePage Headlines={items} />} />
+            <Route path="/" element={<HomePage Headlines={categorydata?.length === 0 ? items:categorydata} />} />
           </Routes> 
         </div>
       </div>
