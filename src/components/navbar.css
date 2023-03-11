@@ -1,0 +1,91 @@
+/* header */
+margin{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+  }
+  .buttons{
+    display: flex;
+    
+  }
+  @media(max-width:998px){
+    .navbar{      
+     height:6rem;
+     grid-template-columns: 2rem 3fr 3fr 1fr 2rem; 
+     width:100%;
+}
+    .Nepal{
+     display:inline;
+    }
+  }
+  @media(max-width:999px){
+    .search-form,.search-box,.search-ico,.Toolbal{
+        display: none;
+    }   
+  }
+    .navbar{
+        
+                display: flex;
+                 background-color: blue;
+                 justify-content: space-between;
+  
+    }
+            .navbar img{
+                width:100px;
+                height: 80px;
+    }
+            .search-form{
+                 display: flex;
+                 justify-content: space-between;
+                 align-items: center;
+                 width: 35%;
+                 height:40%;
+                 border:none;
+                 background-color: white;
+                  border-radius: 50px; 
+     }
+                .search-box{
+                    outline: none;
+                    border-radius:50px;
+                    border:none;
+                    width: 100%;
+                     padding:5px; 
+    
+    }
+  .search-ico{
+            width:13%;
+             height:35px; 
+            border-color: lightblue;
+            background-color: lightblue;
+            border: none;
+             border-radius: 50px; 
+
+  }
+        .search-ico:hover{
+                            background-color:slategrey;
+                            border-color:slategrey;
+                            color:white;
+                                    }
+             
+               
+    .Toolbal{
+      height:40px;
+      width:50px;
+      align-items: center;
+      display: flex;
+      margin:20px;
+      background-color: blue;
+      border-color:blue; 
+      border-radius: 50%;
+    }
+
+    .Toolbal:hover{
+      color:lightblue;
+      border-color:slategrey;
+      background-color: slategrey;
+      border-radius: 50%;
+
+    }
+  
+
+                
