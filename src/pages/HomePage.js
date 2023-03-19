@@ -2,7 +2,7 @@
 // import { FcClock } from "react-icons/fa";
 // import { Route, Router, Routes } from 'react-router-dom';
 import "../app.css";
-import { truncateString,infiniteScroll } from "../common/truncateString";
+import { truncateString } from "../common/truncateString";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 

@@ -48,7 +48,7 @@ useEffect(() => {
    console.log(categorydata);
 
 function chooseCategory(item) {
-  const newItems = items?.filter((i) => i?.[`${"Category "}`] === item);
+  const newItems = items?.filter((i) => i?.[`${"cluster_label"}`] === item);
   setCategoryData(newItems);
    console.log("newItem",newItems);
 }
