@@ -1,42 +1,25 @@
-// import { FaHeart } from "react-icons/fa";
-// import { FcClock } from "react-icons/fa";
-// import { Route, Router, Routes } from 'react-router-dom';
-import "../app.css";
-import { truncateString } from "../common/truncateString";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 
+ import { Route, Router, Routes } from 'react-router-dom';
+ import "../app.css";
+ import { truncateString } from "../common/truncateString";
+ import { Link } from "react-router-dom";
+ import { useEffect, useState } from "react";
 
-function HomePage({Headlines}) {
-const [modalData, setModalData] = useState([]);
+function HomePage({ Headline }) {
+  const [modalData, setModalData] = useState([]);
 
-
-  // useEffect(() => {
-    // async function Fetchnews() {
-    //   const data = await fetch("http://localhost:4000/api/v1/news", {
-    //     method: "GET",
-    //   });
-    //   const Headlines = await data.json();
-    //   //  console.log(Headlines)
-    //   setHeadlines(Headlines?.result);
-    // }
-
-    // Fetchnews();
-  // }, []);
-   {
-        Headlines?.map((item) =>{
-          return (
-            <div>{item}</div>
-          )
-        })
-       }
+  
+  // {
+  //   Headline?.map((item) => {
+  //     return <div>{item}</div>;
+  //   });
+  // }
 
   //to show the first link in the page
-    useEffect(()=>{
-      setModalData(Headlines?.[0]?.[`${" Link"}`]);
-      // console.log(Headlines?.[0]?.[`${" Link"}`]);
-   },
-   [Headlines]);
+  useEffect(() => {
+    setModalData(Headline?.[0]?.[`${"link"}`]);
+      //  console.log(Headline?.[0]?.[`${"link"}`]);
+  }, [Headline]);
 
   return (
     <div className="d-flex justify-content " style={{ width: "100%" }}>
@@ -44,7 +27,7 @@ const [modalData, setModalData] = useState([]);
         className="justify-content-center"
         style={{ maxHeight: "100vh", overflowY: "scroll", flex: "1.5" }}
       >
-        {Headlines?.slice(0, 200)?.map((item, index) => {
+        {Headline?.slice(0, 200)?.map((item, index) => {
           return (
             <div
               key={index}
@@ -52,20 +35,23 @@ const [modalData, setModalData] = useState([]);
               style={{ alignItems: "flex-start" }}
             >
               <div className="card" style={{ width: "100%", height: "5rem" }}>
-                <ol>
-                  <li>
-                    {truncateString(index + 1)}
-                    <p
-                      onClick={() => {
-                      
-                        setModalData(item?.[`${" Link"}`]);
-                      }}
-                      style={{ color:"blue" ,cursor:"pointer"}}
-                    >
-                      {truncateString(item?.Headline, 90)}
-                    </p>
-                  </li>
-                </ol>
+                <button
+                  style={{
+                    borderColor: "white",
+                    width: "30px",
+                    borderRadius: "50%",
+                  }}
+                >
+                  {truncateString(index + 1)}
+                </button>
+                <p
+                  onClick={() => {
+                    setModalData(item?.[`${"link"}`]);
+                  }}
+                  style={{ color: "blue", cursor: "pointer" }}
+                >
+                  {truncateString(item?.headline, 90)}
+                </p>
               </div>
             </div>
           );
@@ -79,5 +65,8 @@ const [modalData, setModalData] = useState([]);
       ></iframe>
     </div>
   );
-}
-export default HomePage;
+}       
+
+
+ export default HomePage;
+

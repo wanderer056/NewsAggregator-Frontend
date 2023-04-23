@@ -1,14 +1,71 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Modal } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import Form from "./form";
+//  import Visual from "../../src/visual.html"
 import "./navbar.css";
 
-const data = new Date().toLocaleTimeString();
-const year = data.getTime;
+const Navbar = ({ Headlines, setSearchResults }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [currentTime, setCurrentTime] = useState("");
+  const [showForm, setShowForm] = useState(false);
+
+  const handleCommentClick = () => {
+    setShowForm(!showForm);
+  };
+
+  const handleSearch = () => {
+    const filteredHeadlines = Headlines.filter((item) =>
+      item.Headline.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setSearchResults(filteredHeadlines);
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+  const [showSubMenu, setShowSubMenu] = useState(false);
+
+    const handleToggleSubMenu = () => {
+      setShowSubMenu(!showSubMenu);
+   };
+
+   const [visualHTML, setVisualHTML] = useState();
+
+   const [showVis, setShowVis] = useState(false)
 
 
-const Navbar = () => {
+  useEffect(() => {
+   const interval = setInterval(() => {
+      const date = new Date();
+      setCurrentTime(date.toLocaleTimeString());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect (() => {
+      async function Visual() {
+        try {
+          const response = await fetch("/visual.html");
+          // const html = await response.text();
+        //  const resp = await response.json();
+        //  console.log(response.url)
+          setVisualHTML(response.url);
+          // console.log("visualHTML", visualHTML);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      Visual();
+  },[visualHTML]);
+  // console.log(showVis)
+
   return (
     <>
-      <i className="fa-solid fa-clock">{year} </i>
       <div className="navbar">
         <img src="nepallogo.png" alt="nepal" className="nepali" />
 
@@ -18,35 +75,76 @@ const Navbar = () => {
             type="search"
             className="search-box"
             placeholder="search here..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyPress={handleKeyPress}
           />
-          <button className="search-ico">
+          <button className="search-ico" onClick={handleSearch}>
             <i className="fa-sharp fa-solid fa-magnifying-glass"></i>
           </button>
-          <h1>{year}</h1>
         </div>
-        
-        <div className="buttons">
-          {/* <button className="Toolbal">
-            <i
-              className="fa-solid fa-bolt-lightning"
-              style={{ margin: "20px", color: "white" }}
-            ></i>
-          </button> */}
-          <button className="Toolbal">
-            <i
-              className="fa-solid fa-comments"
-              style={{ margin: "20px", color: "white" }}
-            ></i>
+
+        <div className="Menu">
+          <button
+            onClick={handleToggleSubMenu}
+            style={{ borderColor: "blue", marginRight: "20px" }}
+          >
+            <i className="fa fa-caret-down" style={{ fontSize: "10px" }}>
+              <p>Visualization</p>
+            </i>
           </button>
-          <button className="Toolbal">
+          {showSubMenu && (
+            <div
+              className="sub-menu"
+              style={{
+                backgroundColor: "white",
+                position: "fixed",
+                display: "inline",
+                justifyContent: "start",
+              }}
+            >
+              <ul>
+                <li
+                  className="active">
+                  <a href={visualHTML} target = "_blank">Visual 1</a>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+
+        <div className="buttons">
+          <button className="Toolbal" onClick={handleCommentClick}>
             <i
-              className="fa-solid fa-bars"
+              className="fa-solid fa-comment"
               style={{ margin: "20px", color: "white" }}
             ></i>
+          </button>{" "}
+          <Modal show={showForm} onHide={() => setShowForm(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Heading Form</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form />
+            </Modal.Body>
+          </Modal>
+          {/* {showForm && <Form />} */}
+          <button
+            style={{
+              borderColor: "blue",
+              color: "white",
+              backgroundColor: "blue",
+              marginRight: "30px",
+            }}
+          >
+            <i className="fa-solid fa-clock"></i>
+            <div>{currentTime}</div>
           </button>
         </div>
       </div>
+     
     </>
   );
 };
+
 export default Navbar;

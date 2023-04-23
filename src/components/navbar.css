@@ -34,7 +34,7 @@ margin{
                 width:100px;
                 height: 80px;
     }
-            .search-form{
+    .search-form{
                  display: flex;
                  justify-content: space-between;
                  align-items: center;
@@ -85,7 +85,21 @@ margin{
       background-color: slategrey;
       border-radius: 50%;
 
+  }
+
+  @media(max-width:768px){
+    .search-form{
+      margin:0;
+      margin-left:auto;
     }
+    .search-box{
+      max-width:100%;
+      margin-right:10px;
+    }
+    .search-ico{
+      margin-left:0;
+    }
+  }
   
 
                 

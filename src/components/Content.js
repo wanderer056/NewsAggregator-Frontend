@@ -6,6 +6,8 @@ function Content(prop) {
   const [items, setItems] = useState([]);
   const [active, setActive] = useState(null);
 
+  console.log(prop.category)
+
   return (
     <div
       className="container-box"
@@ -15,6 +17,7 @@ function Content(prop) {
         width: "300px",
         overflowY: "scroll",
         maxHeight: "100vh",
+        width: "400px",
       }}
     >
       {prop.category?.map((item, index) => {
@@ -23,8 +26,7 @@ function Content(prop) {
             className="card"
             style={{
               margin: "10px",
-              backgroundColor:
-                active === item ? "royalblue" : "slategrey",
+              backgroundColor: active === index ? "royalblue" : "slategrey",
               color: "white",
             }}
           >
@@ -32,17 +34,14 @@ function Content(prop) {
               className="box column cursor-pointer"
               key={index}
               onClick={() => {
-                setActive(item);
-                prop.chooseCategory(item);
+                setActive(index);
+                prop.chooseCategory(item?._id.topic_label);
               }}
-              style={{ cursor: "pointer", padding: "15px" }}
+              style={{ cursor: "pointer", padding: "15px", width: "200px" }}
             >
-              {item}
+              {item?._id.topic_name}
             </div>
           </div>
-          //    <div key={index} onClick={() =>{
-          //   prop.chooseCategory(item)
-          // }}>{item}</div>
         );
       })}
     </div>
