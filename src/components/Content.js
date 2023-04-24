@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { truncateString } from "../common/truncateString";
 import "./content.css";
 
 function Content(prop) {
   const [items, setItems] = useState([]);
   const [active, setActive] = useState(null);
 
-  console.log(prop.category)
+  // console.log(prop.category)
 
   return (
     <div
@@ -39,7 +40,7 @@ function Content(prop) {
               }}
               style={{ cursor: "pointer", padding: "15px", width: "200px" }}
             >
-              {item?._id.topic_name}
+              {truncateString(item?._id.topic_name,30)}
             </div>
           </div>
         );

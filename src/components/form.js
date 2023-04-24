@@ -1,45 +1,131 @@
+// import React, { useState } from "react";
+
+// const Form = () => {
+//   const [headings, setHeadings] = useState({heading1:"",heading2:"",heading3:"" });
+
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   const documents = [headings.heading1, headings.heading2, headings.heading3];
+//     // console.log(documents);
+//     try {
+//       const response = await fetch("https://30f4-35-197-9-167.ngrok.io", {
+//         method: "POST",
+//         headers: {
+//           Accept: "application/json",
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({ documents }),
+//       });
+
+//       const data = await response.json();
+//       // console.log(data)
+//       alert(JSON.stringify(data)); // display the response using popup in the output
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };
+
+
+//   const onChange =(e) =>{
+//       const {name,value} = e.target;
+//       setHeadings((prev) => ({ ...prev, [name]: value }));
+//   }
+//   // console.log(headings)
+
+//   return (
+//     <>
+//       {/* <h1>HEADING FORM</h1> */}
+//       <div className="main">
+//         <div className="register" style={{ margin: "12px" }}>
+//           <form
+//             className="form"
+//           >
+//             <b>
+//               <label>Enter the Headline</label>
+//             </b>
+//             <input
+//               onChange={onChange}
+//               type="text"
+//               id="heading1"
+//               name="heading1"
+//               value={headings.name}
+//               placeholder="Enter .."
+//               style={{ margin: "22px", width: "332px" }}
+//             />
+//             <input
+//               onChange={onChange}
+//               type="text"
+//               id="heading2"
+//               name="heading2"
+//               placeholder="Enter .."
+//               value={headings.name}
+//               style={{ margin: "22px", width: "332px" }}
+//             />
+
+//             <input
+//               onChange={onChange}
+//               type="text"
+//               id="heading3"
+//               name="heading3"
+//               placeholder="Enter .."
+//               value={headings.name}
+//               style={{ margin: "22px", width: "332px" }}
+//             />
+
+//             <div className="submission" style={{ textAlign: "center" }}>
+//               <input type="submit" value="Submit" onClick={handleSubmit} />
+//             </div>
+//           </form>
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default Form;
+
+
 import React, { useState } from "react";
 
 const Form = () => {
-  const [headings, setHeadings] = useState({heading1:"",heading2:"",heading3:"" });
+  const [headings, setHeadings] = useState({
+    heading1: "",
+    heading2: "",
+    heading3: "",
+  });
+  const [responseData, setResponseData] = useState(null);
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  const documents = [headings.heading1, headings.heading2, headings.heading3];
-    // console.log(documents);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const documents = [headings.heading1, headings.heading2, headings.heading3];
     try {
-      const response = await fetch("https://3a1d-35-204-28-243.ngrok.io", {
+      const response = await fetch("https://5155-35-237-246-111.ngrok.io", {
         method: "POST",
         headers: {
-          "Accept": "application/json",
+          Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body:JSON.stringify({ documents }),
+        body: JSON.stringify({ documents }),
       });
 
       const data = await response.json();
-      // console.log(data)
-      alert(JSON.stringify(data)); // display the response using popup in the output
+      setResponseData(data); // settting the response data to state variable
     } catch (error) {
       console.error(error);
     }
   };
 
-
-  const onChange =(e) =>{
-      const {name,value} = e.target;
-      setHeadings((prev) => ({ ...prev, [name]: value }));
-  }
-  // console.log(headings)
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setHeadings((prev) => ({ ...prev, [name]: value }));
+  };
 
   return (
     <>
       {/* <h1>HEADING FORM</h1> */}
       <div className="main">
         <div className="register" style={{ margin: "12px" }}>
-          <form
-            className="form"
-          >
+          <form className="form">
             <b>
               <label>Enter the Headline</label>
             </b>
@@ -48,7 +134,7 @@ const handleSubmit = async (e) => {
               type="text"
               id="heading1"
               name="heading1"
-              value={headings.name}
+              value={headings.heading1}
               placeholder="Enter .."
               style={{ margin: "22px", width: "332px" }}
             />
@@ -58,7 +144,7 @@ const handleSubmit = async (e) => {
               id="heading2"
               name="heading2"
               placeholder="Enter .."
-              value={headings.name}
+              value={headings.heading2}
               style={{ margin: "22px", width: "332px" }}
             />
 
@@ -68,7 +154,7 @@ const handleSubmit = async (e) => {
               id="heading3"
               name="heading3"
               placeholder="Enter .."
-              value={headings.name}
+              value={headings.heading3}
               style={{ margin: "22px", width: "332px" }}
             />
 
@@ -78,10 +164,18 @@ const handleSubmit = async (e) => {
           </form>
         </div>
       </div>
+
+      {responseData && ( // check if responseData is not null
+        <div>
+          <h2>Response Data:</h2>
+          <pre>{JSON.stringify(responseData, null, 2)}</pre>
+        </div>
+      )}
     </>
   );
 };
 
 export default Form;
+
 
 

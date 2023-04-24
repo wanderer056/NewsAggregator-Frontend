@@ -3,31 +3,46 @@
  import "../app.css";
  import { truncateString } from "../common/truncateString";
  import { Link } from "react-router-dom";
- import { useEffect, useState } from "react";
+ import { useEffect, useState,useRef } from "react";
 
 function HomePage({ Headline }) {
   const [modalData, setModalData] = useState([]);
 
-  
-  // {
-  //   Headline?.map((item) => {
-  //     return <div>{item}</div>;
-  //   });
-  // }
+  const [itemsToShow, setItemsToShow] = useState(200);
+  const containerRef = useRef(null);
+
+    const [selectedNews, setSelectedNews] = useState(null);
+
+
+
+const handleNewsClick = (news) => {
+  setSelectedNews(news);
+};
+
 
   //to show the first link in the page
   useEffect(() => {
-    setModalData(Headline?.[0]?.[`${"link"}`]);
+    setModalData("https://www.setopati.com/politics/300329");
       //  console.log(Headline?.[0]?.[`${"link"}`]);
   }, [Headline]);
+
+  const handleScroll = () => {
+    const container = containerRef.current;
+    if (container.scrollTop + container.clientHeight ===container.scrollHeight) {
+      setItemsToShow(itemsToShow + 200);
+    }
+  };
+
 
   return (
     <div className="d-flex justify-content " style={{ width: "100%" }}>
       <div
         className="justify-content-center"
         style={{ maxHeight: "100vh", overflowY: "scroll", flex: "1.5" }}
+        onScroll={handleScroll}
+        ref={containerRef}
       >
-        {Headline?.slice(0, 200)?.map((item, index) => {
+        {Headline?.slice(0, itemsToShow)?.map((item, index) => {
           return (
             <div
               key={index}
@@ -69,4 +84,6 @@ function HomePage({ Headline }) {
 
 
  export default HomePage;
+
+
 

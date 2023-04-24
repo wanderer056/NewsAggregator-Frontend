@@ -19,19 +19,30 @@ const [specificat,setSpecificat]=useState([]);
   //  console.log(items);
 
 
-useEffect(() => {
-   async function Fetchnews() {
-     const data = await fetch(
-       "http://localhost:4000/api/v1/news/?page=1300&perPage=200",
-       {
-         method: "GET",
-       }
-     );
-     const items = await data.json();
-     setItems(items?.result);
-   }
+useEffect(() => { 
+  const pages = 1300;
+  const perPage = 200;
+
+  async function Fetchnews() {
+    const pages = 1300;
+    const perPage = 200;
+
+    for (let i = 1; i <= pages; i++) {
+      const data = await fetch(
+        `http://localhost:4000/api/v1/news/?page=${i}&perPage=${perPage}`,
+        {
+          method: "GET",
+        }
+      );
+      const result = await data.json();
+      items.push(...result.result);
+    }
+
+    setItems(items);
+  }
+
   Fetchnews();
-  //  console.log(items)
+ console.log(items)
 
    
   async function Fetchcategory() {
