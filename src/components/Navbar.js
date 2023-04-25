@@ -34,6 +34,7 @@ const Navbar = ({ Headlines, setSearchResults }) => {
 
    const [visualHTML, setVisualHTML] = useState();
       const [visualsHTML, setVisualsHTML] = useState();
+      const [topicHTML, setTopicHTML] = useState();
 
 
    const [showVis, setShowVis] = useState(false)
@@ -52,11 +53,14 @@ const Navbar = ({ Headlines, setSearchResults }) => {
       async function Visual() {
         try {
           const response = await fetch("/visual.html");
-          const responses = await fetch("/heat_map.html")
+          const responses = await fetch("/heat_map.html");
+          const topic= await fetch("/topic_map.html")
         //  const resp = await response.json();
         //  console.log(response.url)
           setVisualHTML(response.url);
           setVisualsHTML(responses.url);
+          setTopicHTML(topic.url);
+
           // console.log("visualHTML", visualHTML);
         } catch (error) {
           console.log(error);
@@ -64,7 +68,7 @@ const Navbar = ({ Headlines, setSearchResults }) => {
       }
 
       Visual();
-  },[visualHTML,visualsHTML]);
+  },[visualHTML,visualsHTML,topicHTML]);
   // console.log(showVis)
 
   return (
@@ -115,6 +119,12 @@ const Navbar = ({ Headlines, setSearchResults }) => {
                     {" "}
                     <a href={visualsHTML} target="_blank">
                       Visual 2
+                    </a>
+                  </li>
+                  <li>
+                    {" "}
+                    <a href={topicHTML} target="_blank">
+                      Visual 3
                     </a>
                   </li>
                 </li>
