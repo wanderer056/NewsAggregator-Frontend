@@ -6,7 +6,9 @@
  import { useEffect, useState,useRef } from "react";
 
 function HomePage({ Headline }) {
-  const [modalData, setModalData] = useState([]);
+   const [modalData, setModalData] = useState({ link: "", news_site: "" });
+  // const [modalData, setModalData] = useState(null);
+  
 
   const [itemsToShow, setItemsToShow] = useState(200);
   const containerRef = useRef(null);
@@ -22,8 +24,7 @@ const handleNewsClick = (news) => {
 
   //to show the first link in the page
   useEffect(() => {
-    setModalData("https://www.setopati.com/politics/300329");
-      //  console.log(Headline?.[0]?.[`${"link"}`]);
+    setModalData("https://www.onlinekhabar.com/2023/04/1297412");
   }, [Headline]);
 
   const handleScroll = () => {
@@ -32,7 +33,7 @@ const handleNewsClick = (news) => {
       setItemsToShow(itemsToShow + 200);
     }
   };
-
+console.log(Headline)
 
   return (
     <div className="d-flex justify-content " style={{ width: "100%" }}>
@@ -59,25 +60,43 @@ const handleNewsClick = (news) => {
                 >
                   {truncateString(index + 1)}
                 </button>
-                <p
-                  onClick={() => {
-                    setModalData(item?.[`${"link"}`]);
-                  }}
-                  style={{ color: "blue", cursor: "pointer" }}
-                >
-                  {truncateString(item?.headline, 90)}
-                </p>
+                {item?.news_site === "onlinekhabar" ? (
+                  <p
+
+                  // onClick ={() =>{
+                  //   setModalData(item?.link)
+                  // }}
+                    onClick={() => {
+                      setModalData({...modalData,link:item?.link,news_site:item?.news_site}
+                       );
+                    }}
+                    style={{ color: "blue", cursor: "pointer" }}
+                  >
+                    {truncateString(item?.headline, 90)}
+                  </p>
+                ) : (
+                  <a
+                  href={item?.link}
+                  target='_blank'
+                    style={{ color: "blue", cursor: "pointer" }}
+                  >
+                    {truncateString(item?.headline, 90)}
+                  </a>
+                )}
               </div>
             </div>
           );
         })}
       </div>
-
-      <iframe
+            {
+            modalData?.news_site === "onlinekhabar" && 
+            <iframe
         style={{ width: "100%", height: "100vh", flex: "3" }}
-        src={modalData}
+        src={modalData?.link}
         frameborder="0"
       ></iframe>
+            }
+     
     </div>
   );
 }       

@@ -23,26 +23,30 @@ function Content(prop) {
     >
       {prop.category?.map((item, index) => {
         return (
-          <div
-            className="card"
-            style={{
-              margin: "10px",
-              backgroundColor: active === index ? "royalblue" : "slategrey",
-              color: "white",
-            }}
-          >
-            <div
-              className="box column cursor-pointer"
-              key={index}
-              onClick={() => {
-                setActive(index);
-                prop.chooseCategory(item?._id.topic_label);
-              }}
-              style={{ cursor: "pointer", padding: "15px", width: "200px" }}
-            >
-              {truncateString(item?._id.topic_name,30)}
-            </div>
-          </div>
+          <>
+            {item?._id.topic_label > 0 && (
+              <div
+                className="card"
+                style={{
+                  margin: "10px",
+                  backgroundColor: active === index ? "royalblue" : "slategrey",
+                  color: "white",
+                }}
+              >
+                <div
+                  className="box column cursor-pointer"
+                  key={index}
+                  onClick={() => {
+                    setActive(index);
+                    prop.chooseCategory(item?._id.topic_label);
+                  }}
+                  style={{ cursor: "pointer", padding: "15px", width: "200px" }}
+                >
+                  {truncateString(item?._id.topic_name, 30)}
+                </div>
+              </div>
+            )}
+          </>
         );
       })}
     </div>

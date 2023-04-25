@@ -99,7 +99,7 @@ const Form = () => {
     e.preventDefault();
     const documents = [headings.heading1, headings.heading2, headings.heading3];
     try {
-      const response = await fetch("https://5155-35-237-246-111.ngrok.io", {
+      const response = await fetch(" https://5565-34-125-171-135.ngrok.io", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -167,8 +167,24 @@ const Form = () => {
 
       {responseData && ( // check if responseData is not null
         <div>
-          <h2>Response Data:</h2>
-          <pre>{JSON.stringify(responseData, null, 2)}</pre>
+          <table border={"1px"}>
+            <tr>
+              <th>Headline</th>
+              <th>Cluster</th>
+            </tr>
+            {
+              [0,1,2].map((a,i)=>{
+                return (
+                  <tr key={i}>
+                    {" "}
+                    <td>{Object.keys(responseData)?.[i]}</td>
+                    <td>{Object.values(responseData)?.[i]}</td>
+                  </tr>
+                );
+              })
+            }
+          </table>
+          {/* <pre>{JSON.stringify(responseData, null, 2)}</pre> */}
         </div>
       )}
     </>

@@ -33,6 +33,8 @@ const Navbar = ({ Headlines, setSearchResults }) => {
    };
 
    const [visualHTML, setVisualHTML] = useState();
+      const [visualsHTML, setVisualsHTML] = useState();
+
 
    const [showVis, setShowVis] = useState(false)
 
@@ -50,10 +52,11 @@ const Navbar = ({ Headlines, setSearchResults }) => {
       async function Visual() {
         try {
           const response = await fetch("/visual.html");
-          // const html = await response.text();
+          const responses = await fetch("/heat_map.html")
         //  const resp = await response.json();
         //  console.log(response.url)
           setVisualHTML(response.url);
+          setVisualsHTML(responses.url);
           // console.log("visualHTML", visualHTML);
         } catch (error) {
           console.log(error);
@@ -61,7 +64,7 @@ const Navbar = ({ Headlines, setSearchResults }) => {
       }
 
       Visual();
-  },[visualHTML]);
+  },[visualHTML,visualsHTML]);
   // console.log(showVis)
 
   return (
@@ -104,9 +107,16 @@ const Navbar = ({ Headlines, setSearchResults }) => {
               }}
             >
               <ul>
-                <li
-                  className="active">
-                  <a href={visualHTML} target = "_blank">Visual 1</a>
+                <li className="active" style={{ display: "inline" }}>
+                  <a href={visualHTML} target="_blank">
+                    Visual 1
+                  </a>
+                  <li>
+                    {" "}
+                    <a href={visualsHTML} target="_blank">
+                      Visual 2
+                    </a>
+                  </li>
                 </li>
               </ul>
             </div>
@@ -142,7 +152,6 @@ const Navbar = ({ Headlines, setSearchResults }) => {
           </button>
         </div>
       </div>
-     
     </>
   );
 };
