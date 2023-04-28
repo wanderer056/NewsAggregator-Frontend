@@ -24,7 +24,7 @@ function Content(prop) {
       {prop.category?.map((item, index) => {
         return (
           <>
-            {item?._id.topic_label > 0 && (
+            {item?._id.topic_label >= 0 && (
               <div
                 className="card"
                 style={{

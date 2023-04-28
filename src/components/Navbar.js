@@ -113,18 +113,18 @@ const Navbar = ({ Headlines, setSearchResults }) => {
               <ul>
                 <li className="active" style={{ display: "inline" }}>
                   <a href={visualHTML} target="_blank">
-                    Visual 1
+                    Viz_test
                   </a>
                   <li>
                     {" "}
                     <a href={visualsHTML} target="_blank">
-                      Visual 2
+                      heat_map
                     </a>
                   </li>
                   <li>
                     {" "}
                     <a href={topicHTML} target="_blank">
-                      Visual 3
+                      topic_map
                     </a>
                   </li>
                 </li>
