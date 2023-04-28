@@ -23,14 +23,13 @@ const [params,setParams]=useState(0);
 useEffect(() => { 
   
   async function Fetchnews() {
-    console.log("sabera")
     // const pages = 1300;
     // const perPage = 200;
 
     // for (let i = 1;i <= pages; i++) {
       const data = await fetch(
         // "http://localhost:4000/api/v1/news/?page=1&perPage=200",
-           `http://localhost:4000/api/v1/news/${params}?page=500&perPage=20`,
+           `http://localhost:4000/api/v1/news/${params}?page=0&perPage=1000`,
         // `http://localhost:4000/api/v1/news/?page=${i}&perPage=${perPage}`,
         {
           method: "GET",

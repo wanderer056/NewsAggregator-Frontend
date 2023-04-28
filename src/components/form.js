@@ -99,7 +99,7 @@ const Form = () => {
     e.preventDefault();
     const documents = [headings.heading1, headings.heading2, headings.heading3];
     try {
-      const response = await fetch(" https://5565-34-125-171-135.ngrok.io", {
+      const response = await fetch("https://78d1-35-237-96-18.ngrok.io", {
         method: "POST",
         headers: {
           Accept: "application/json",

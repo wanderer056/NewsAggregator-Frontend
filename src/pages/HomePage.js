@@ -62,13 +62,15 @@ console.log(Headline)
                 </button>
                 {item?.news_site === "onlinekhabar" ? (
                   <p
-
-                  // onClick ={() =>{
-                  //   setModalData(item?.link)
-                  // }}
+                    // onClick ={() =>{
+                    //   setModalData(item?.link)
+                    // }}
                     onClick={() => {
-                      setModalData({...modalData,link:item?.link,news_site:item?.news_site}
-                       );
+                      setModalData({
+                        ...modalData,
+                        link: item?.link,
+                        news_site: item?.news_site,
+                      });
                     }}
                     style={{ color: "blue", cursor: "pointer" }}
                   >
@@ -76,13 +78,14 @@ console.log(Headline)
                   </p>
                 ) : (
                   <a
-                  href={item?.link}
-                  target='_blank'
+                    href={item?.link}
+                    target="_blank"
                     style={{ color: "blue", cursor: "pointer" }}
                   >
                     {truncateString(item?.headline, 90)}
                   </a>
                 )}
+                <div style={{fontSize:"12px"}}>{item?.date}</div>
               </div>
             </div>
           );
@@ -96,8 +99,7 @@ console.log(Headline)
         frameborder="0"
       ></iframe>
             }
-     
-    </div>
+      </div>
   );
 }       
 
