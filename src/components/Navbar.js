@@ -8,7 +8,9 @@ import "./navbar.css";
 const Navbar = ({ Headlines, setSearchResults }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentTime, setCurrentTime] = useState("");
+  const [reload, setReload] = useState("");
   const [showForm, setShowForm] = useState(false);
+  const [apiResponse, setApiResponse] = useState(null);
 
   const handleCommentClick = () => {
     setShowForm(!showForm);
@@ -28,20 +30,18 @@ const Navbar = ({ Headlines, setSearchResults }) => {
   };
   const [showSubMenu, setShowSubMenu] = useState(false);
 
-    const handleToggleSubMenu = () => {
-      setShowSubMenu(!showSubMenu);
-   };
+  const handleToggleSubMenu = () => {
+    setShowSubMenu(!showSubMenu);
+  };
 
-   const [visualHTML, setVisualHTML] = useState();
-      const [visualsHTML, setVisualsHTML] = useState();
-      const [topicHTML, setTopicHTML] = useState();
+  const [visualHTML, setVisualHTML] = useState();
+  const [visualsHTML, setVisualsHTML] = useState();
+  const [topicHTML, setTopicHTML] = useState();
 
-
-   const [showVis, setShowVis] = useState(false)
-
+  const [showVis, setShowVis] = useState(false);
 
   useEffect(() => {
-   const interval = setInterval(() => {
+    const interval = setInterval(() => {
       const date = new Date();
       setCurrentTime(date.toLocaleTimeString());
     }, 1000);
@@ -49,34 +49,40 @@ const Navbar = ({ Headlines, setSearchResults }) => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect (() => {
-      async function Visual() {
-        try {
-          const response = await fetch("/visual.html");
-          const responses = await fetch("/heat_map.html");
-          const topic= await fetch("/topic_map.html")
+  useEffect(() => {
+    async function Visual() {
+      try {
+        const response = await fetch("/visual.html");
+        const responses = await fetch("/heat_map.html");
+        const topic = await fetch("/topic_map.html");
         //  const resp = await response.json();
-        //  console.log(response.url)
-          setVisualHTML(response.url);
-          setVisualsHTML(responses.url);
-          setTopicHTML(topic.url);
-
-          // console.log("visualHTML", visualHTML);
-        } catch (error) {
-          console.log(error);
-        }
+        setVisualHTML(response.url);
+        setVisualsHTML(responses.url);
+        setTopicHTML(topic.url);
+      } catch (error) {
+        console.log(error);
       }
+    }
 
-      Visual();
-  },[visualHTML,visualsHTML,topicHTML]);
-  // console.log(showVis)
+    Visual();
+  }, [visualHTML, visualsHTML, topicHTML]);
+
+
+   const handleApiCall = async () => {
+     const response = await fetch(
+       "https://30ec-34-80-172-164.ngrok.io/predictandpost"
+     );
+     const data = await response.json();
+     alert(JSON.stringify(data));
+   };
+
 
   return (
     <>
       <div className="navbar">
         <img src="nepallogo.png" alt="nepal" className="nepali" />
 
-        <h2 style={{ margin: "15px", color: "white" }}> NEWS BUCKET</h2>
+        <h2 style={{ color: "white"}}> NEWS BUCKET</h2>
         {/* <div className="search-form" style={{ margin: "20px" }}>
           <input
             type="search"
@@ -91,61 +97,55 @@ const Navbar = ({ Headlines, setSearchResults }) => {
           </button>
         </div> */}
 
-        <div className="Menu">
-          <button
-            onClick={handleToggleSubMenu}
-            style={{ borderColor: "blue", marginRight: "20px" }}
-          >
-            <i className="fa fa-caret-down" style={{ fontSize: "10px" }}>
-              <p>Visualization</p>
-            </i>
-          </button>
-          {showSubMenu && (
-            <div
-              className="sub-menu"
-              style={{
-                backgroundColor: "white",
-                position: "fixed",
-                display: "inline",
-                justifyContent: "start",
-              }}
-            >
-              <ul>
-                <li className="active" style={{ display: "inline" }}>
-                  <a href={visualHTML} target="_blank">
-                    Viz_test
-                  </a>
-                  <li>
-                    {" "}
-                    <a href={visualsHTML} target="_blank">
-                      heat_map
-                    </a>
-                  </li>
-                  <li>
-                    {" "}
-                    <a href={topicHTML} target="_blank">
-                      topic_map
-                    </a>
-                  </li>
-                </li>
-              </ul>
-            </div>
-          )}
-        </div>
-
-        {/* <button
-          style={{
-            borderColor: "blue",
-            borderRadius: "5px",
-            padding: "5px",
-            // marginLeft: "80px",
-          }}
+        <div
+          className="buttons"
+          style={{ borderColor: "blue", marginRight: "20px" }}
         >
-          Reload <div className="reload" style={{ borderRadius: "30px" }}>
+          <div className="Menu">
+            <button onClick={handleToggleSubMenu}>
+              <i className="fa fa-caret-down" style={{ fontSize: "10px" }}>
+                <p>Visualization</p>
+              </i>
+            </button>
+            {showSubMenu && (
+              <div
+                className="sub-menu"
+                style={{
+                  backgroundColor: "white",
+                  position: "fixed",
+                  display: "inline",
+                  justifyContent: "start",
+                }}
+              >
+                <ul>
+                  <li className="active" style={{ display: "inline" }}>
+                    <a href={visualHTML} target="_blank">
+                      Viz_test
+                    </a>
+                    <li>
+                      {" "}
+                      <a href={visualsHTML} target="_blank">
+                        heat_map
+                      </a>
+                    </li>
+                    <li>
+                      {" "}
+                      <a href={topicHTML} target="_blank">
+                        topic_map
+                      </a>
+                    </li>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
-        </button> */}
+          <button
+            className="Dataload"
+            onClick={handleApiCall}
+          >
+            Reload
+          </button>
 
-        <div className="buttons">
           <button className="Toolbal" onClick={handleCommentClick}>
             <i
               className="fa-solid fa-comment"

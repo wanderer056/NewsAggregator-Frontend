@@ -17,39 +17,26 @@ const [specificat,setSpecificat]=useState([]);
 const [params,setParams]=useState(0);
 
 
-  //  console.log(items);
 
 
 useEffect(() => { 
   
   async function Fetchnews() {
-    // const pages = 1300;
-    // const perPage = 200;
 
-    // for (let i = 1;i <= pages; i++) {
       const data = await fetch(
-        // "http://localhost:4000/api/v1/news/?page=1&perPage=200",
+  
            `http://localhost:4000/api/v1/news/${params}?page=0&perPage=1000`,
-        // `http://localhost:4000/api/v1/news/?page=${i}&perPage=${perPage}`,
         {
           method: "GET",
         }
       );
       const result = await data.json();
-      // items.push(...result.result);
-    // }
-     console.log("hello",result);
 
 setItems(result?.result);
 
   }
 
   Fetchnews();
-
-   
-  
-
-  
 }, [params]);
 useEffect (() =>{
   async function Fetchcategory() {
