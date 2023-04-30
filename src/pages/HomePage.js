@@ -50,11 +50,11 @@ console.log(Headline)
               className="box column cursor-pointer"
               style={{ alignItems: "flex-start" }}
             >
-              <div className="card" style={{ width: "100%", height: "5rem" }}>
+              <div className="card" style={{ width: "100%", height: "7rem" }}>
                 <button
                   style={{
                     borderColor: "white",
-                    width: "30px",
+                    width: "40px",
                     borderRadius: "50%",
                   }}
                 >

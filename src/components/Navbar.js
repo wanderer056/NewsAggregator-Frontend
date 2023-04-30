@@ -77,7 +77,7 @@ const Navbar = ({ Headlines, setSearchResults }) => {
         <img src="nepallogo.png" alt="nepal" className="nepali" />
 
         <h2 style={{ margin: "15px", color: "white" }}> NEWS BUCKET</h2>
-        <div className="search-form" style={{ margin: "20px" }}>
+        {/* <div className="search-form" style={{ margin: "20px" }}>
           <input
             type="search"
             className="search-box"
@@ -89,7 +89,7 @@ const Navbar = ({ Headlines, setSearchResults }) => {
           <button className="search-ico" onClick={handleSearch}>
             <i className="fa-sharp fa-solid fa-magnifying-glass"></i>
           </button>
-        </div>
+        </div> */}
 
         <div className="Menu">
           <button
@@ -132,6 +132,18 @@ const Navbar = ({ Headlines, setSearchResults }) => {
             </div>
           )}
         </div>
+
+        {/* <button
+          style={{
+            borderColor: "blue",
+            borderRadius: "5px",
+            padding: "5px",
+            // marginLeft: "80px",
+          }}
+        >
+          Reload <div className="reload" style={{ borderRadius: "30px" }}>
+          </div>
+        </button> */}
 
         <div className="buttons">
           <button className="Toolbal" onClick={handleCommentClick}>
