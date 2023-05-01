@@ -24,13 +24,6 @@ margin{
     }
   }
 
-    .navbar{
-        
-                display: flex;
-                 background-color: blue;
-                 /* justify-content: space-between; */
-  
-    }
             .navbar img{
                 width:100px;
                 height: 80px;
@@ -55,6 +48,10 @@ margin{
       background-color: slategrey;
       border-radius: 50%;
 
+  }
+  .Dataload:hover{
+      color:white;
+      background-color: grey;
   }
 
   /* @media(max-width:768px){

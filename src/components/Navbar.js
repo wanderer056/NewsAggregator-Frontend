@@ -79,10 +79,12 @@ const Navbar = ({ Headlines, setSearchResults }) => {
 
   return (
     <>
-      <div className="navbar">
+      <div className="navbar" style={{backgroundColor:"blue"}}>
         <img src="nepallogo.png" alt="nepal" className="nepali" />
 
-        <h2 style={{ color: "white"}}> NEWS BUCKET</h2>
+        <h2 style={{ color: "white", marginLeft:"12px",marginRight:"500px"}}>
+          NEPALI NEWS BUCKET
+        </h2>
         {/* <div className="search-form" style={{ margin: "20px" }}>
           <input
             type="search"
@@ -99,10 +101,12 @@ const Navbar = ({ Headlines, setSearchResults }) => {
 
         <div
           className="buttons"
-          style={{ borderColor: "blue", marginRight: "20px" }}
         >
           <div className="Menu">
-            <button onClick={handleToggleSubMenu}>
+            <button
+              onClick={handleToggleSubMenu}
+              style={{ borderColor: "blue", borderRadius: "10px",marginTop:"15px" }}
+            >
               <i className="fa fa-caret-down" style={{ fontSize: "10px" }}>
                 <p>Visualization</p>
               </i>
@@ -142,10 +146,17 @@ const Navbar = ({ Headlines, setSearchResults }) => {
           <button
             className="Dataload"
             onClick={handleApiCall}
+            style={{
+              height: "42px",
+              marginLeft: "5px",
+              borderColor: "blue",
+              borderRadius: "10px",
+              padding:"5px",
+              marginTop:"15px"
+            }}
           >
-            Reload
+            <p> Reload</p>
           </button>
-
           <button className="Toolbal" onClick={handleCommentClick}>
             <i
               className="fa-solid fa-comment"
