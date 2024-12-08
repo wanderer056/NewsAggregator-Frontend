@@ -68,22 +68,22 @@ const Navbar = ({ Headlines, setSearchResults }) => {
   }, [visualHTML, visualsHTML, topicHTML]);
 
 
-   const handleApiCall = async () => {
-     const response = await fetch(
-       "https://30ec-34-80-172-164.ngrok.io/predictandpost"
-     );
-     const data = await response.json();
-     alert(JSON.stringify(data));
-   };
+  const handleApiCall = async () => {
+    const response = await fetch(
+      "https://30ec-34-80-172-164.ngrok.io/predictandpost"
+    );
+    const data = await response.json();
+    alert(JSON.stringify(data));
+  };
 
 
   return (
     <>
-      <div className="navbar" style={{backgroundColor:"blue"}}>
+      <div className="navbar" style={{ backgroundColor: "blue" }}>
         <img src="nepallogo.png" alt="nepal" className="nepali" />
 
-        <h2 style={{ color: "white", marginLeft:"12px",marginRight:"500px"}}>
-          NEPALI NEWS BUCKET
+        <h2 style={{ color: "white", marginLeft: "12px", marginRight: "500px" }}>
+          NEWS AGGREGATOR
         </h2>
         {/* <div className="search-form" style={{ margin: "20px" }}>
           <input
@@ -105,7 +105,7 @@ const Navbar = ({ Headlines, setSearchResults }) => {
           <div className="Menu">
             <button
               onClick={handleToggleSubMenu}
-              style={{ borderColor: "blue", borderRadius: "10px",marginTop:"15px" }}
+              style={{ borderColor: "blue", borderRadius: "10px", marginTop: "15px" }}
             >
               <i className="fa fa-caret-down" style={{ fontSize: "10px" }}>
                 <p>Visualization</p>
@@ -151,8 +151,8 @@ const Navbar = ({ Headlines, setSearchResults }) => {
               marginLeft: "5px",
               borderColor: "blue",
               borderRadius: "10px",
-              padding:"5px",
-              marginTop:"15px"
+              padding: "5px",
+              marginTop: "15px"
             }}
           >
             <p> Reload</p>

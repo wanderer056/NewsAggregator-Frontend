@@ -24,7 +24,7 @@ function Content(prop) {
       {prop.category?.map((item, index) => {
         return (
           <>
-            {item?._id.topic_label >= 0 && (
+            {item?.topic_label >= 0 && (
               <div
                 className="card"
                 style={{
@@ -38,11 +38,11 @@ function Content(prop) {
                   key={index}
                   onClick={() => {
                     setActive(index);
-                    prop.chooseCategory(item?._id.topic_label);
+                    prop.chooseCategory(item?.topic_label);
                   }}
                   style={{ cursor: "pointer", padding: "15px", width: "200px" }}
                 >
-                  {truncateString(item?._id.topic_name, 30)}
+                  {truncateString(item?.topic_name, 30)}
                 </div>
               </div>
             )}
