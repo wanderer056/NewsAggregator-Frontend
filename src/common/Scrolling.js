@@ -60,7 +60,7 @@ function Scroll() {
 
   const fetchMoreData = () => {
     // fetch more data here, e.g. using an API call
-    fetch(`http://localhost:4000/api/v1/news?page=${page}`)
+    fetch(`/api/v1/news?page=${page}`)
       .then((res) => res.json())
       .then((data) => {
         setItems((prevItems) => [...prevItems, ...data.items]);
